@@ -1,6 +1,6 @@
-export default function ImagePopup({ card, onClose }) {
+export default function ImagePopup({ card, onClose, isOpen }) {
   return (
-    <div className={`popup popup_open-image ${card.link && "popup_opened"}`}>
+    <div className={`popup popup_open-image ${isOpen && "popup_opened"}`}>
       <figure className="popup__figure">
         <img src={card.link} className="popup__image" alt="#" />
         <figcaption className="popup__caption">{card.name}</figcaption>

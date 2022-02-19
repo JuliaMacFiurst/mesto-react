@@ -13,7 +13,6 @@ export default function PopupWithForm({
           className="popup__form"
           id={`popup-${name}__form`}
           name={`${name}-popup`}
-          noValidate
         >
           {children}
           <button

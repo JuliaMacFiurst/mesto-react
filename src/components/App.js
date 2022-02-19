@@ -6,38 +6,40 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 
 export default function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
-  const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
 
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   }
 
   function handleDeleteClick() {
-    setConfirmDeletePopupOpen(true);
+    setIsConfirmDeletePopupOpen(true);
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
+    setIsImagePopupOpen(true);
   }
 
   function closeAllPopups() {
-    setEditAvatarPopupOpen(false);
-    setEditProfilePopupOpen(false);
-    setAddPlacePopupOpen(false);
-    setSelectedCard({});
-    setConfirmDeletePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsImagePopupOpen(false);
+    setIsConfirmDeletePopupOpen(false);
   }
 
   return (
@@ -141,7 +143,10 @@ export default function App() {
         />
 
         {/* ПОПАП ПРОСМОТРА КАРТИНКИ */}
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <ImagePopup 
+        isOpen={isImagePopupOpen}
+        card={selectedCard} 
+        onClose={closeAllPopups} />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function Card({ card, onCardClick, onDeleteClick }) {
             type="button"
             aria-label="Нравится"
           ></button>
-          <span className="place__like-count">{card.likes.lendth}</span>
+          <span className="place__like-count">{card.likes.length}</span>
         </div>
       </div>
       <button
