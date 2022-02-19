@@ -4,6 +4,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
+import ImagePopup from './ImagePopup.js';
 
 
 export default function App() {
@@ -12,7 +13,7 @@ export default function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = useState(false);
-  // const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
   
 
   function handleEditAvatarClick() {
@@ -31,16 +32,16 @@ export default function App() {
     setConfirmDeletePopupOpen(true);
   }
 
-  // function handleCardClick(card) {
-  //   setSelectedCard(card);
-  // }
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
 
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
-    // setSelectedCard({});
-    // setDeletePopupOpen(false);
+    setSelectedCard({});
+    setConfirmDeletePopupOpen(false);
   }
 
   return (
@@ -52,7 +53,7 @@ export default function App() {
       onEditInfo={handleEditProfileClick}
       onAddPlace={handleAddPlaceClick}
       onDeleteClick={handleDeleteClick}
-      // onCardClick={handleCardClick}
+      onCardClick={handleCardClick}
     />
     <Footer />
 
@@ -143,8 +144,12 @@ export default function App() {
         isOpen={isConfirmDeletePopupOpen}
         onClose={closeAllPopups}
        />
-
-
+ 
+      {/* ПОПАП ПРОСМОТРА КАРТИНКИ */}
+      <ImagePopup
+      card={selectedCard}
+      onClose={closeAllPopups}
+      />
     </div>
 
     

@@ -1,31 +1,34 @@
 
 
-export default function Card(props) {
+export default function Card({ card, onCardClick, onDeleteClick }) {
 
     function handleCardClick() {
-        props.onCardClick(props.card)
+        onCardClick(card)
       }
 
     return(
         <li className="place">
         <img 
          className="place__photo popup__open-button"
-         src={props.card.link} 
-         alt={props.card.name} 
+         src={card.link} 
+         alt={card.name} 
          onClick={handleCardClick}
          />
         <div className="place__description">
-          <h2 className="place__title"></h2>
+          <h2 className="place__title">{card.name}</h2>
           <div className="place__like-container">
             <button 
               className="place__like-button"
               type="button"
               aria-label="Нравится">
             </button>
-            <span className="place__like-count">0</span>
+            <span className="place__like-count">{card.likes.lendth}</span>
          </div>
          </div>
-        <button className="button place__remove-button"></button>
+        <button 
+        className="button place__remove-button"
+        onClick={onDeleteClick}
+        ></button>
       </li>
     )
 }

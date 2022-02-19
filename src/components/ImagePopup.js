@@ -8,6 +8,7 @@ export default function ImagePopup({ card, onClose }) {
           type="button"
           className="button popup__close-button"
           aria-label="Закрыть картинку"
+          onClick={onClose}
         ></button>
       </figure>
     </div>
