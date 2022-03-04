@@ -7,9 +7,8 @@ export default function Main({
   onEditInfo,
   onAddPlace,
   onCardClick,
-  onDeleteClick,
+  onConfirmDelete,
   handleCardLike,
-  handleCardDelete,
   cards,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -49,8 +48,8 @@ export default function Main({
                 card={card}
                 key={card._id}
                 onCardClick={onCardClick}
-                onCardDelete={handleCardDelete}
                 onCardLike={handleCardLike}
+                onConfirmDelete={onConfirmDelete}
               />
             );
           })}

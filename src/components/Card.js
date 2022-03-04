@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Card({ card, onCardClick, onCardDelete, onCardLike }) {
+export default function Card({ card, onCardClick, onConfirmDelete, onCardLike }) {
   
   const currentUser = React.useContext(CurrentUserContext)
 
@@ -28,7 +28,7 @@ function handleLikeClick() {
 }
 
 function handleDeleteClick() {
-  onCardDelete(card)
+  onConfirmDelete(card)
 }
 
 
@@ -54,6 +54,7 @@ function handleDeleteClick() {
       </div>
       <button
         className={cardDeleteButtonClassName}
+        type="button"
         onClick={handleDeleteClick}
       ></button>
     </li>

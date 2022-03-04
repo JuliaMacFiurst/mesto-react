@@ -19,6 +19,8 @@ export default function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      isLoading={props.isLoading}
+      buttonText="Сохранить"
     >
       <input
         type="url"

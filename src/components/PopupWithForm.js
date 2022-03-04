@@ -4,7 +4,10 @@ export default function PopupWithForm({
   isOpen,
   onClose,
   children,
-  onSubmit
+  onSubmit,
+  isLoading,
+  buttonText
+
 }) {
   return (
     <div id={`popup-${name}`} className={`popup ${isOpen && "popup_opened"}`}>
@@ -23,7 +26,7 @@ export default function PopupWithForm({
             value="Сохранить"
             className="popup__sbmt-button"
           >
-            Сохранить
+            {isLoading ? `${buttonText}...` : `${buttonText}`}
           </button>
         </form>
         <button
