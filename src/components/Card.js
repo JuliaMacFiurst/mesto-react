@@ -1,7 +1,36 @@
-export default function Card({ card, onCardClick, onDeleteClick }) {
-  function handleCardClick() {
-    onCardClick(card);
-  }
+import React, { useState, useEffect, useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+
+export default function Card({ card, onCardClick, onCardDelete, onCardLike }) {
+  
+  const currentUser = React.useContext(CurrentUserContext)
+
+  // Определяем, являемся ли мы владельцем текущей карточки
+const isOwn = card.owner._id === currentUser._id;
+
+// Создаём переменную, которую после зададим в `className` для кнопки удаления
+const cardDeleteButtonClassName = (
+  `place__remove-button ${isOwn ? '' : 'place__remove-button_type_hidden'}`
+); 
+
+// Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+// Создаём переменную, которую после зададим в `className` для кнопки лайка
+const cardLikeButtonClassName = `place__like-button ${isLiked ? 'place__like-button_active' : ''}`; 
+
+function handleCardClick() {
+  onCardClick(card);
+}
+
+function handleLikeClick() {
+  onCardLike(card)
+}
+
+function handleDeleteClick() {
+  onCardDelete(card)
+}
+
 
   return (
     <li className="place">
@@ -15,16 +44,17 @@ export default function Card({ card, onCardClick, onDeleteClick }) {
         <h2 className="place__title">{card.name}</h2>
         <div className="place__like-container">
           <button
-            className="place__like-button"
+            className={cardLikeButtonClassName}
             type="button"
             aria-label="Нравится"
+            onClick={handleLikeClick}
           ></button>
           <span className="place__like-count">{card.likes.length}</span>
         </div>
       </div>
       <button
-        className="button place__remove-button"
-        onClick={onDeleteClick}
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
       ></button>
     </li>
   );

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import avatar from "../images/avatar.jpg";
-import api from "../utils/api.js";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function Main({
   onEditAvatar,
@@ -9,27 +8,11 @@ export default function Main({
   onAddPlace,
   onCardClick,
   onDeleteClick,
+  handleCardLike,
+  handleCardDelete,
+  cards,
 }) {
-  const [userAvatar, setUserAvatar] = useState(avatar);
-  const [userName, setUserName] = useState("Жак-Ив Кусто");
-  const [userDescription, setUserDescription] = useState(
-    "Исследователь океана"
-  );
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getAllData()
-      .then(([data, userData]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(`Ошибка загрузки данных: ${err}`);
-      });
-  }, []);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="main">
@@ -38,18 +21,18 @@ export default function Main({
         <div className="profile__avatar-container">
           <div
             className="profile__avatar"
-            style={{ backgroundImage: `url(${userAvatar})` }}
+            style={{ backgroundImage: `url(${currentUser.avatar})` }}
             onClick={onEditAvatar}
           ></div>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="button profile__edit-button"
             type="button"
             onClick={onEditInfo}
           ></button>
-          <p className="profile__about">{userDescription}</p>
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button
           className="button profile__add-button"
@@ -66,7 +49,8 @@ export default function Main({
                 card={card}
                 key={card._id}
                 onCardClick={onCardClick}
-                onDeleteClick={onDeleteClick}
+                onCardDelete={handleCardDelete}
+                onCardLike={handleCardLike}
               />
             );
           })}
