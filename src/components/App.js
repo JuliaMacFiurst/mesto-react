@@ -103,8 +103,10 @@ function handleConfirmDeleteClick(card) {
 function handleCardDelete(card) {
   SetIsLoading(true);
   api.deleteCard(card._id)
-    .then(() => {
-      setCards(cards.filter((item) => item !== card))
+    .then((data) => {
+      setCards((cards) => cards.filter((c) => {
+        return (c._id !== card._id)
+      }));
       closeAllPopups()
     })
     .catch((err) => console.log(err))

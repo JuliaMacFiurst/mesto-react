@@ -1,36 +1,41 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Card({ card, onCardClick, onConfirmDelete, onCardLike }) {
-  
-  const currentUser = React.useContext(CurrentUserContext)
+export default function Card({
+  card,
+  onCardClick,
+  onConfirmDelete,
+  onCardLike,
+}) {
+  const currentUser = React.useContext(CurrentUserContext);
 
   // Определяем, являемся ли мы владельцем текущей карточки
-const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner._id === currentUser._id;
 
-// Создаём переменную, которую после зададим в `className` для кнопки удаления
-const cardDeleteButtonClassName = (
-  `place__remove-button ${isOwn ? '' : 'place__remove-button_type_hidden'}`
-); 
+  // Создаём переменную, которую после зададим в `className` для кнопки удаления
+  const cardDeleteButtonClassName = `place__remove-button ${
+    isOwn ? "" : "place__remove-button_type_hidden"
+  }`;
 
-// Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-const isLiked = card.likes.some(i => i._id === currentUser._id);
+  // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-// Создаём переменную, которую после зададим в `className` для кнопки лайка
-const cardLikeButtonClassName = `place__like-button ${isLiked ? 'place__like-button_active' : ''}`; 
+  // Создаём переменную, которую после зададим в `className` для кнопки лайка
+  const cardLikeButtonClassName = `place__like-button ${
+    isLiked ? "place__like-button_active" : ""
+  }`;
 
-function handleCardClick() {
-  onCardClick(card);
-}
+  function handleCardClick() {
+    onCardClick(card);
+  }
 
-function handleLikeClick() {
-  onCardLike(card)
-}
+  function handleLikeClick() {
+    onCardLike(card);
+  }
 
-function handleDeleteClick() {
-  onConfirmDelete(card)
-}
-
+  function handleDeleteClick() {
+    onConfirmDelete(card);
+  }
 
   return (
     <li className="place">
