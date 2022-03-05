@@ -39,6 +39,7 @@ export default function EditProfilePopup(props) {
       onSubmit={handleSubmit}
       isLoading={props.isLoading}
       buttonText="Сохранить"
+      loadingButtonText="Сохранение..."
     >
       <input
         type="text"

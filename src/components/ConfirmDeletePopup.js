@@ -17,6 +17,7 @@ export default function ConfirmDeletePopup(props) {
         onSubmit={handleSubmit}
         isLoading={props.isLoading}
         buttonText="Да"
+        loadingButtonText="Удаление..."
         />
     );
 }

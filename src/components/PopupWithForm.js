@@ -6,7 +6,8 @@ export default function PopupWithForm({
   children,
   onSubmit,
   isLoading,
-  buttonText
+  buttonText,
+  loadingButtonText
 
 }) {
   return (
@@ -23,10 +24,9 @@ export default function PopupWithForm({
           <button
             id={`popup-${name}__save-button`}
             type="submit"
-            value="Сохранить"
             className="popup__sbmt-button"
           >
-            {isLoading ? `${buttonText}...` : `${buttonText}`}
+            {isLoading ? loadingButtonText : buttonText}
           </button>
         </form>
         <button

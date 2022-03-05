@@ -4,7 +4,6 @@ import PopupWithForm from "./PopupWithForm";
 export default function AddPlacePopup(props) {
   const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
-
   function handleNameChange(e) {
     setName(e.target.value);
   }
@@ -30,6 +29,7 @@ export default function AddPlacePopup(props) {
       onSubmit={handleSubmit}
       isLoading={props.isLoading}
       buttonText="Сохранить"
+      loadingButtonText="Сохранение..."
     >
       <input
         type="text"
@@ -42,7 +42,7 @@ export default function AddPlacePopup(props) {
         maxLength="30"
         onChange={handleNameChange}
       />
-      <span className="popup__input-error title-input-error"></span>
+       <span className="popup__input-error title-input-error"></span>
       <input
         type="url"
         name="cardLink"
@@ -53,7 +53,7 @@ export default function AddPlacePopup(props) {
         required
         onChange={handleLinkChange}
       />
-      <span className="popup__input-error link-input-error"></span>
+     <span className="popup__input-error link-input-error"></span>
     </PopupWithForm>
   );
 }

@@ -169,7 +169,6 @@ function handleAddPlaceSubmit(cardData) {
           isLoading={isLoading}
         />
 
-        {/* ПОПАП ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ */}
         <ConfirmDeletePopup
           
           title="Вы уверены?"
@@ -180,7 +179,6 @@ function handleAddPlaceSubmit(cardData) {
           card={card}
         />
 
-        {/* ПОПАП ПРОСМОТРА КАРТИНКИ */}
         <ImagePopup 
         isOpen={isImagePopupOpen}
         card={selectedCard} 
